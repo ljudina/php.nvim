@@ -37,6 +37,12 @@ return {
 			vim.keymap.set("n", "<leader>fs", builtin.lsp_document_symbols, {
 				desc = "LSP Document symbols [Telescope]",
 			})
+			vim.keymap.set("v", "<leader>fs", function()
+				local text = vim.getVisualSelection()
+				builtin.lsp_document_symbols({ default_text = text })
+			end, {
+				desc = "LSP Document symbols selection [Telescope]",
+			})
 			vim.keymap.set("n", "<leader>fr", builtin.oldfiles, {
 				desc = "Old files [Telescope]",
 			})
