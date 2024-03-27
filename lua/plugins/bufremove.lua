@@ -5,6 +5,10 @@ return {
             silent = true,
             desc = "Buffer delete",
         })
+        vim.keymap.set("n", "<leader>ba", ":bufdo bwipeout<CR>", {
+            silent = true,
+            desc = "Delete all buffers",
+        })
         vim.keymap.set("n", "<leader>bw", ":Bwipeout<CR>", {
             silent = true,
             desc = "Buffer wipeout",
