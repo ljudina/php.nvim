@@ -1,6 +1,7 @@
 return {
     "mfussenegger/nvim-dap",
     dependencies = {
+        { "nvim-neotest/nvim-nio" },
         -- fancy UI for the debugger
         {
             "rcarriga/nvim-dap-ui",
