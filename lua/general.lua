@@ -13,6 +13,8 @@ vim.opt.confirm = true
 vim.opt.number = true
 vim.opt.scrolloff = 8
 vim.wo.relativenumber = true
+vim.opt.undofile = true
+vim.opt.undolevels = 10000
 local api = vim.api
 -- Highlight on yank
 api.nvim_create_autocmd("TextYankPost", {
