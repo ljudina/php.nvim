@@ -28,6 +28,15 @@ return {
 			end, {
 				desc = "Live file grep selection [Telescope]",
 			})
+			vim.keymap.set("n", "<leader>fc", builtin.current_buffer_fuzzy_find, {
+				desc = "Current file grep [Telescope]",
+			})
+			vim.keymap.set("v", "<leader>fc", function()
+				local text = vim.getVisualSelection()
+				builtin.current_buffer_fuzzy_find({ default_text = text })
+			end, {
+				desc = "Current file grep selection [Telescope]",
+			})
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, {
 				desc = "Buffers [Telescope]",
 			})
