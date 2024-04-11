@@ -14,9 +14,3 @@ map("v", ">", ">gv")
 -- paste over currently selected text without yanking it
 map("v", "p", '"_dp')
 map("v", "P", '"_dP')
-
--- navigate wim panes easier
-map("n", "<c-k>", ":wincmd k<CR>", opts)
-map("n", "<c-j>", ":wincmd j<CR>", opts)
-map("n", "<c-h>", ":wincmd h<CR>", opts)
-map("n", "<c-l>", ":wincmd l<CR>", opts)
