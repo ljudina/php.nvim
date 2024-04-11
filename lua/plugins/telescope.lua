@@ -55,6 +55,12 @@ return {
 			vim.keymap.set("n", "<leader>fr", builtin.oldfiles, {
 				desc = "Old files [Telescope]",
 			})
+			vim.keymap.set("v", "<leader>fr", function()
+				local text = vim.getVisualSelection()
+				builtin.oldfiles({ default_text = text })
+			end, {
+				desc = "Old files selection [Telescope]",
+			})
 			vim.keymap.set("n", "<leader>fw", function()
 				builtin.grep_string({
 					search = vim.fn.input("Find word > "),
