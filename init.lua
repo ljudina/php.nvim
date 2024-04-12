@@ -13,6 +13,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("general")
 require("config.keymaps")
+require("config.kickstart")
 require("lazy").setup("plugins", {
 	change_detection = {
 		notify = false,
