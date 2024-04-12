@@ -14,3 +14,6 @@ map("v", ">", ">gv")
 -- paste over currently selected text without yanking it
 map("v", "p", '"_dp')
 map("v", "P", '"_dP')
+
+map("n", "<C-k>", "<cmd>bnext<CR>zz")
+map("n", "<C-j>", "<cmd>bprev<CR>zz")
