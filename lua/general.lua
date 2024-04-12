@@ -6,6 +6,7 @@ vim.opt.wrap = false
 vim.opt.colorcolumn = "128" -- default is "80" but "120" because of erp php project side monitor
 vim.opt.clipboard = "unnamedplus" -- access to system clipboard
 vim.opt.fileencoding = "utf-8"
+vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.smartindent = true
 vim.opt.termguicolors = true
