@@ -17,3 +17,8 @@ map("v", "P", '"_dP')
 
 map("n", "<C-k>", "<cmd>bnext<CR>zz")
 map("n", "<C-j>", "<cmd>bprev<CR>zz")
+
+map("n", "<leader>cn", "<cmd>cnext<CR>")
+map("n", "<leader>cp", "<cmd>cprev<CR>")
+map("n", "<leader>co", "<cmd>cope<CR>")
+map("n", "<leader>cc", "<cmd>ccl<CR>")
