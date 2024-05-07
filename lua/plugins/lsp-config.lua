@@ -40,6 +40,10 @@ return {
 				capabilites = capabilities,
 			})
 
+			lspconfig.sqlls.setup({
+				capabilites = capabilities,
+			})
+
 			vim.keymap.set("n", "<leader>li", ":LspInfo<CR>", {
 				desc = "Show information [LSP]",
 			})
