@@ -36,6 +36,10 @@ return {
 				capabilites = capabilities,
 			})
 
+			lspconfig.gopls.setup({
+				capabilites = capabilities,
+			})
+
 			vim.keymap.set("n", "<leader>li", ":LspInfo<CR>", {
 				desc = "Show information [LSP]",
 			})
