@@ -21,10 +21,12 @@ return {
 		config = function()
 			require("gitsigns").setup()
 			vim.keymap.set("n", "<leader>gn", ":Gitsigns next_hunk<CR>", {
-				desc = "Next change [GitSigns]", silent = true
+				desc = "Next change [GitSigns]",
+				silent = true,
 			})
 			vim.keymap.set("n", "<leader>gp", ":Gitsigns prev_hunk<CR>", {
-				desc = "Previous change [GitSigns]", silent = true
+				desc = "Previous change [GitSigns]",
+				silent = true,
 			})
 		end,
 	},
