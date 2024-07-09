@@ -17,5 +17,15 @@ return {
 		vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, {
 			desc = "Format buffer [LSP]",
 		})
+        vim.keymap.set("n", "<leader>lx", ":% !tidy -q --input-xml true --indent yes --indent-spaces 4 %<CR>", {
+            noremap = true,
+            silent = true,
+            desc = "Format XML [Tidy]",
+        })
+        vim.keymap.set("n", "<leader>lj", ":%!jq '.'<CR>", {
+            noremap = true,
+            silent = true,
+            desc = "Format JSON [Jq]",
+        })
 	end,
 }
