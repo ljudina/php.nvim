@@ -17,5 +17,9 @@ return {
             silent = true,
             desc = "Delete current file with buffer",
         })
+        vim.keymap.set("n", "<leader>bo", ":wv!<CR>", {
+            silent = true,
+            desc = "Delete oldfiles list",
+        })
     end
 }
