@@ -48,7 +48,10 @@ return {
 			callback = function()
 				local stats = require("lazy").stats()
 				local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-				dashboard.section.footer.val = "⚡ Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms"
+				local version_info = vim.version()
+				local nvim_version = "v" .. version_info.major .. "." .. version_info.minor .. "." .. version_info.patch
+
+				dashboard.section.footer.val = "⚡ Neovim " .. nvim_version .. " loaded " .. stats.count .. " plugins in " .. ms .. "ms"
 				pcall(vim.cmd.AlphaRedraw)
 			end,
 		})
