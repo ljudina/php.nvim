@@ -6,6 +6,16 @@ return {
 	lazy = true,
 	opts = function()
 		local dashboard = require("alpha.themes.dashboard")
+        dashboard.section.header.val = {
+            "                                                     ",
+            "  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
+            "  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
+            "  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
+            "  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
+            "  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
+            "  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
+            "                                                     ",
+        }
 		dashboard.section.buttons.val = {
 			dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
 			dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
