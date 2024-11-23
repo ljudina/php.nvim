@@ -36,7 +36,7 @@ end, {
 vim.keymap.set("n", "<leader>hr", function()
     local path = vim.fn.expand("%")
     vim.fn.setreg("+", path)
-    vim.notify('Copied relative "' .. path .. '" to the clipboard!')
+    vim.notify('Copied relative path "' .. path .. '" to the clipboard!')
 end, {
     silent = true,
     desc = "Copy relative path to clipboard",
