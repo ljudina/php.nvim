@@ -27,7 +27,7 @@ map("n", "<leader>cc", "<cmd>ccl<CR>")
 vim.keymap.set("n", "<leader>ha", function()
     local path = vim.fn.expand("%:p")
     vim.fn.setreg("+", path)
-    vim.notify('Copied "' .. path .. '" to the clipboard!')
+    vim.notify('Copied absolute path "' .. path .. '" to the clipboard!')
 end, {
     silent = true,
     desc = "Copy absolute path to clipboard",
@@ -36,7 +36,7 @@ end, {
 vim.keymap.set("n", "<leader>hr", function()
     local path = vim.fn.expand("%")
     vim.fn.setreg("+", path)
-    vim.notify('Copied "' .. path .. '" to the clipboard!')
+    vim.notify('Copied relative "' .. path .. '" to the clipboard!')
 end, {
     silent = true,
     desc = "Copy relative path to clipboard",
@@ -45,7 +45,7 @@ end, {
 vim.keymap.set("n", "<leader>hf", function()
     local path = vim.fn.expand("%:t")
     vim.fn.setreg("+", path)
-    vim.notify('Copied "' .. path .. '" to the clipboard!')
+    vim.notify('Copied filename "' .. path .. '" to the clipboard!')
 end, {
     silent = true,
     desc = "Copy filename to clipboard",
