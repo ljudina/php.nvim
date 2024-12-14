@@ -18,11 +18,10 @@ map("v", "P", '"_dP')
 map("n", "<C-k>", "<cmd>bnext<CR>zz")
 map("n", "<C-j>", "<cmd>bprev<CR>zz")
 
-map("n", "<leader>cn", "<cmd>cnext<CR>")
-map("n", "<leader>cp", "<cmd>cprev<CR>")
-map("n", "<leader>co", "<cmd>cope<CR>")
-map("n", "<leader>cc", "<cmd>ccl<CR>")
-
+map("n", "<M-j>", "<cmd>cnext<CR>")
+map("n", "<M-k>", "<cmd>cprev<CR>")
+map("n", "<M-o>", "<cmd>cope<CR>")
+map("n", "<M-q>", "<cmd>ccl<CR>")
 
 vim.keymap.set("n", "<leader>ha", function()
     local path = vim.fn.expand("%:p")
