@@ -70,7 +70,7 @@ return {
                     if handle then
                         latest_version = handle:read("*a"):gsub("\n", "")
                         handle:close()
-                        if latest_version and latest_version ~= "" then
+                        if latest_version and latest_version ~= "" and latest_version ~= nvim_version then
                             footer = "⚡ Neovim " .. nvim_version .. "  "
                             footer = footer .. "loaded " .. stats.count .. " plugins in " .. ms .. "ms"
                             dashboard.section.footer.val = footer
