@@ -23,6 +23,22 @@ map("n", "<M-k>", "<cmd>cprev<CR>")
 map("n", "<M-o>", "<cmd>cope<CR>")
 map("n", "<M-q>", "<cmd>ccl<CR>")
 
+-- delete to black hole register (without yanking)
+map("n", "<C-x>", '"_dd')
+map("v", "<C-x>", '"_d')
+
+-- copy everything between { and } including the brackets
+-- p puts text after the cursor,
+-- P puts text before the cursor.
+vim.keymap.set("n", "YY", "va{Vy", opts)
+
+-- Move line on the screen rather than by line in the file
+vim.keymap.set("n", "j", "gj", opts)
+vim.keymap.set("n", "k", "gk", opts)
+
+-- Select all
+vim.keymap.set("n", "<C-a>", "ggVG", opts)
+
 vim.keymap.set("n", "<leader>ha", function()
     local path = vim.fn.expand("%:p")
     vim.fn.setreg("+", path)
