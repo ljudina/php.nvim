@@ -32,6 +32,9 @@ return {
             vim.keymap.set("n", "<leader>fg", builtin.live_grep, {
                 desc = "Live file grep [Telescope]",
             })
+            vim.keymap.set("n", "<leader>fq", builtin.resume, {
+                desc = "Resume find [Telescope]",
+            })
             vim.keymap.set("n", "<leader>fo", function()
                 builtin.live_grep({
                     grep_open_files = true,
