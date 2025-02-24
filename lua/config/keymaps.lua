@@ -37,7 +37,7 @@ vim.keymap.set("n", "j", "gj", opts)
 vim.keymap.set("n", "k", "gk", opts)
 
 -- Select all
-vim.keymap.set("n", "<C-l>", "ggVG", opts)
+vim.keymap.set("n", "<M-l>", "ggVG", opts)
 
 vim.keymap.set("n", "<leader>ha", function()
     local path = vim.fn.expand("%:p")
