@@ -24,8 +24,8 @@ map("n", "<M-o>", "<cmd>cope<CR>")
 map("n", "<M-q>", "<cmd>ccl<CR>")
 
 -- delete to black hole register (without yanking)
-map("n", "<C-i>", '"_dd')
-map("v", "<C-i>", '"_d')
+map("n", "<M-i>", '"_dd')
+map("v", "<M-i>", '"_d')
 
 -- copy everything between { and } including the brackets
 -- p puts text after the cursor,
