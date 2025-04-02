@@ -42,7 +42,15 @@ return {
             -- Default list of enabled providers defined so that you can extend it
             -- elsewhere in your config, without redefining it, due to `opts_extend`
             sources = {
-                default = { 'lsp', 'path', 'snippets', 'buffer', 'omni' },
+                default = { 'lsp', 'path', 'snippets', 'buffer' },
+                providers = {
+                    lsp = {
+                        fallbacks = {}
+                    },
+                    buffer = {
+                        score_offset = -3
+                    }
+                },
             },
 
             -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
