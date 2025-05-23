@@ -29,9 +29,13 @@ return {
             vim.keymap.set("n", "<leader>fp", builtin.git_files, {
                 desc = "Find Git files [Telescope]",
             })
-            vim.keymap.set("n", "<leader>fg", builtin.live_grep, {
-                desc = "Live file grep [Telescope]",
-            })
+            vim.keymap.set('n', '<leader>fg', function()
+              builtin.live_grep({
+                additional_args = function()
+                  return { "--encoding", "utf-8" }
+                end
+              })
+            end, { desc = "Live file grep UTF-8 [Telescope]" })
             vim.keymap.set("n", "<leader>fq", builtin.resume, {
                 desc = "Resume find [Telescope]",
             })
