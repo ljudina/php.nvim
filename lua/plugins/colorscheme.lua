@@ -4,14 +4,18 @@ return {
         name = "catppuccin",
         priority = 1000,
         opts = {
-          transparent_background = true,
-          integrations = {
-            telescope = true,
-            harpoon = true,
-            mason = true,
-            treesitter = true,
-            nvimtree = true,
-          }
+            transparent_background = true,
+            float = {
+                transparent = true,
+            },
+            integrations = {
+                telescope = {
+                    enabled = true
+                },
+                mason = true,
+                treesitter = true,
+                nvimtree = true,
+            }
         },
         config = function(_, opts)
             require("catppuccin").setup(opts)
