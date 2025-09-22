@@ -7,7 +7,11 @@ return {
         servers = {
             html = {},
             lua_ls = {},
-            intelephense = {},
+            intelephense = {
+              format = {
+                braces = "k&r",
+              },
+            },
             eslint = {},
             gopls = {},
             sqlls = {},
@@ -19,22 +23,13 @@ return {
     },
     signature = { window = { border = 'single' } },
     config = function(_, opts)
-        local lspconfig = require('lspconfig')
         for server, config in pairs(opts.servers) do
             -- passing config.capabilities to blink.cmp merges with the capabilities in your
             -- `opts[server].capabilities, if you've defined it
             config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
-            lspconfig[server].setup(config)
+            vim.lsp.config(server, config)
+            vim.lsp.enable(server)
         end
-        lspconfig['intelephense'].setup {
-          settings = {
-            intelephense = {
-              format = {
-                braces = "k&r",
-              },
-            },
-          },
-        }
         -- LSP keymaps
         vim.keymap.set("n", "<leader>li", ":LspInfo<CR>", {
             desc = "Show information [LSP]",
