@@ -48,7 +48,23 @@ return {
                         fallbacks = {}
                     },
                     buffer = {
-                        score_offset = -3
+                        score_offset = -3,
+                        opts = {
+                          -- IMPORTANT: only scan the current buffer (fast + predictable)
+                          get_bufnrs = function()
+                            return { vim.api.nvim_get_current_buf() }
+                          end,
+
+                          -- Lift the size guards so large files aren’t skipped
+                          -- (tweak to taste; these are safe defaults)
+                          max_sync_buffer_size  = 100000,    -- characters
+                          max_async_buffer_size = 4000000,  -- characters
+                          max_total_buffer_size = 6000000,  -- across scanned bufs
+
+                          use_cache = true,        -- reduce CPU churn on big files
+                          min_keyword_length = 2,  -- optional: start matching earlier
+                          max_items = 200,         -- optional: cap list length
+                        },
                     }
                 },
             },
