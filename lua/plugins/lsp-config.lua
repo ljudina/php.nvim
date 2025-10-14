@@ -12,7 +12,22 @@ return {
                 braces = "k&r",
               },
             },
-            eslint = {},
+            -- eslint = {},
+            vtsls = {
+                settings = {
+                    -- optional fine-tuning
+                    typescript = {
+                        format = {
+                            semicolons = "insert",
+                        },
+                    },
+                    javascript = {
+                        format = {
+                            semicolons = "insert",
+                        },
+                    },
+                },
+            },
             gopls = {},
             sqlls = {},
         }
