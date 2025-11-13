@@ -7,15 +7,19 @@ return {
         servers = {
             html = {},
             lua_ls = {},
+
             intelephense = {
-              format = {
-                braces = "k&r",
-              },
+                settings = {
+                    intelephense = {
+                        format = {
+                            braces = "k&r", -- or "allman", "psr12"
+                        },
+                    },
+                },
             },
-            -- eslint = {},
+
             vtsls = {
                 settings = {
-                    -- optional fine-tuning
                     typescript = {
                         format = {
                             semicolons = "insert",
@@ -28,9 +32,10 @@ return {
                     },
                 },
             },
+
             gopls = {},
             sqlls = {},
-        }
+        },
     },
     completion = {
         menu = { border = 'single' },
@@ -58,10 +63,10 @@ return {
         vim.keymap.set("n", "<leader>lr", vim.lsp.buf.references, {
             desc = "Go do references [LSP]",
         })
-        vim.keymap.set("n", "<leader>lc", vim.lsp.buf.code_action,  {
+        vim.keymap.set("n", "<leader>lc", vim.lsp.buf.code_action, {
             desc = "Code action [LSP]",
         })
-        vim.keymap.set("n", "<leader>lm", vim.lsp.buf.implementation,  {
+        vim.keymap.set("n", "<leader>lm", vim.lsp.buf.implementation, {
             desc = "Show implementation [LSP]",
         })
     end
