@@ -1,13 +1,22 @@
 return {
     'neovim/nvim-lspconfig',
     dependencies = { 'saghen/blink.cmp' },
-
-    -- example using `opts` for defining servers
     opts = {
         servers = {
             html = {},
-            lua_ls = {},
-
+            lua_ls = {
+                settings = {
+                    Lua = {
+                        format = {
+                            enable = true,
+                            defaultConfig = {
+                                indent_style = "space",
+                                indent_size = "4",
+                            },
+                        },
+                    },
+                },
+            },
             intelephense = {
                 settings = {
                     intelephense = {
@@ -17,7 +26,6 @@ return {
                     },
                 },
             },
-
             vtsls = {
                 settings = {
                     typescript = {
@@ -44,13 +52,19 @@ return {
     signature = { window = { border = 'single' } },
     config = function(_, opts)
         for server, config in pairs(opts.servers) do
-            -- passing config.capabilities to blink.cmp merges with the capabilities in your
-            -- `opts[server].capabilities, if you've defined it
             config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
             vim.lsp.config(server, config)
             vim.lsp.enable(server)
         end
-        -- LSP keymaps
+        vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, {
+            desc = "Format buffer [LSP]",
+        })
+        -- Optional: format on save for LSP-supported buffers
+        -- vim.api.nvim_create_autocmd("BufWritePre", {
+        --     callback = function(args)
+        --         vim.lsp.buf.format({ bufnr = args.buf })
+        --     end,
+        -- })
         vim.keymap.set("n", "<leader>li", ":LspInfo<CR>", {
             desc = "Show information [LSP]",
         })
@@ -69,5 +83,21 @@ return {
         vim.keymap.set("n", "<leader>lm", vim.lsp.buf.implementation, {
             desc = "Show implementation [LSP]",
         })
-    end
+        vim.keymap.set("n", "<leader>lx",
+            ":% !tidy -q --input-xml true --indent yes --indent-spaces 4 %<CR>",
+            {
+                noremap = true,
+                silent = true,
+                desc = "Format XML [Tidy]",
+            }
+        )
+        vim.keymap.set("n", "<leader>lj",
+            ":%!jq '.'<CR>",
+            {
+                noremap = true,
+                silent = true,
+                desc = "Format JSON [Jq]",
+            }
+        )
+    end,
 }
