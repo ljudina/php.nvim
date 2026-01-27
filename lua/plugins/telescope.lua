@@ -104,6 +104,9 @@ return {
                     search = vim.fn.input("Find word > "),
                 })
             end, { desc = "Find word [Telescope]" })
+            vim.keymap.set("n", "<leader>fx", builtin.git_status, {
+                desc = "Find git changed files [Telescope]",
+            })
         end,
     },
 }
