@@ -17,6 +17,13 @@ vim.wo.relativenumber = true
 vim.opt.undofile = true
 vim.opt.undolevels = 10000
 local api = vim.api
+-- Use // for PHP comments instead of /* */
+api.nvim_create_autocmd("FileType", {
+    pattern = "php",
+    callback = function()
+        vim.bo.commentstring = "// %s"
+    end,
+})
 -- Highlight on yank
 api.nvim_create_autocmd("TextYankPost", {
     pattern = '*',

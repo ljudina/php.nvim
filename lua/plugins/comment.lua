@@ -1,7 +1,2 @@
-return {
-    'numToStr/Comment.nvim',
-    lazy = false,
-    config = function()
-        require('Comment').setup()
-    end
-}
+-- Built-in gcc/gc commenting in Neovim 0.12
+return {}

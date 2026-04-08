@@ -24,7 +24,7 @@ return {
 				desc = "Next change [GitSigns]",
 				silent = true,
 			})
-			vim.keymap.set("n", "<leader>gp", ":Gitsigns prev_hunk<CR>", {
+			vim.keymap.set("n", "<leader>gN", ":Gitsigns prev_hunk<CR>", {
 				desc = "Previous change [GitSigns]",
 				silent = true,
 			})

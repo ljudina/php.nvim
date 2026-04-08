@@ -39,6 +39,20 @@ vim.keymap.set("n", "k", "gk", opts)
 -- Select all
 vim.keymap.set("n", "<M-m>", "ggVG", opts)
 
+-- Block comment wrap (visual mode)
+vim.keymap.set("v", "gb", function()
+    -- Get selection range
+    vim.cmd('noau normal! "vy"')
+    local start_line = vim.fn.line("'<")
+    local end_line = vim.fn.line("'>")
+    -- Add /* before and */ after the selection
+    vim.api.nvim_buf_set_lines(0, end_line, end_line, false, { " */" })
+    vim.api.nvim_buf_set_lines(0, start_line - 1, start_line - 1, false, { "/* " })
+end, { silent = true, desc = "Wrap in block comment /* */" })
+
+-- Undotree (built-in in 0.12)
+vim.keymap.set("n", "<leader>ut", "<cmd>Undotree<CR>", { silent = true, desc = "Undotree Toggle" })
+
 vim.keymap.set("n", "<leader>ha", function()
     local path = vim.fn.expand("%:p")
     vim.fn.setreg("+", path)
