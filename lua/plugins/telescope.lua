@@ -81,12 +81,14 @@ return {
             vim.keymap.set("n", "<leader>fh", builtin.help_tags, {
                 desc = "Help tags [Telescope]",
             })
-            vim.keymap.set("n", "<leader>fs", builtin.lsp_document_symbols, {
+            vim.keymap.set("n", "<leader>fs", function()
+                builtin.lsp_document_symbols({ symbols = { "method", "function" }})
+            end, {
                 desc = "LSP Document symbols [Telescope]",
             })
             vim.keymap.set("v", "<leader>fs", function()
                 local text = vim.getVisualSelection()
-                builtin.lsp_document_symbols({ default_text = text })
+                builtin.lsp_document_symbols({ default_text = text, symbols = { "method", "function" }})
             end, {
                 desc = "LSP Document symbols selection [Telescope]",
             })
