@@ -8,12 +8,6 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
-# Ensure jq is installed
-if ! command -v jq &> /dev/null; then
-    echo "❌ 'jq' is required but not installed. Please install it with 'sudo apt install jq'" >&2
-    exit 1
-fi
-
 # Detect original user's home directory (for sudo)
 if [[ -n "$SUDO_USER" ]]; then
     USER_HOME=$(eval echo "~$SUDO_USER")
@@ -24,7 +18,9 @@ fi
 # Configuration
 NVIM_BIN="/opt/nvim/bin/nvim"
 NVIM_DIR="/opt/nvim/"
-LATEST_RELEASE_API="https://api.github.com/repos/neovim/neovim/releases/latest"
+NVIM_ASSET="nvim-linux-x86_64.tar.gz"
+LATEST_RELEASE_URL="https://github.com/neovim/neovim/releases/latest"
+LATEST_DOWNLOAD_URL="https://github.com/neovim/neovim/releases/latest/download/$NVIM_ASSET"
 NVIM_LOCAL_SHARE="$USER_HOME/.local/share/nvim"
 
 get_installed_version() {
@@ -35,18 +31,23 @@ get_installed_version() {
     fi
 }
 
-get_latest_version_and_url() {
-    json=$(curl -s "$LATEST_RELEASE_API")
+get_latest_version() {
+    local final_url version
 
-    version=$(echo "$json" | jq -r .tag_name)
-    download_url=$(echo "$json" | jq -r '.assets[] | select(.name == "nvim-linux-x86_64.tar.gz") | .browser_download_url')
+    final_url=$(curl -sLI -o /dev/null -w '%{url_effective}' "$LATEST_RELEASE_URL") || {
+        echo "❌ Failed to reach $LATEST_RELEASE_URL" >&2
+        return 1
+    }
 
-    if [[ -z "$version" || -z "$download_url" || "$version" == "null" || "$download_url" == "null" ]]; then
-        echo "❌ Failed to fetch the latest version or download URL from GitHub API." >&2
-        exit 1
+    # Expected: https://github.com/neovim/neovim/releases/tag/vX.Y.Z
+    version="${final_url##*/tag/}"
+
+    if [[ -z "$version" || "$version" == "$final_url" ]]; then
+        echo "❌ Could not parse version from redirect URL: $final_url" >&2
+        return 1
     fi
 
-    echo "$version;$download_url"
+    echo "$version"
 }
 
 clear_nvim_local_share() {
@@ -89,7 +90,9 @@ install_latest_version() {
 # Main logic
 echo "Checking for Neovim updates..."
 installed_version=$(get_installed_version)
-read -r latest_version download_url <<< "$(get_latest_version_and_url | tr ';' ' ')"
+
+latest_version=$(get_latest_version) || exit 1
+download_url="$LATEST_DOWNLOAD_URL"
 
 echo "Installed version: $installed_version"
 echo "Latest version: $latest_version"

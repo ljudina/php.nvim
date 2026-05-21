@@ -62,15 +62,17 @@ return {
                 local nvim_version = "v" .. version_info.major .. "." .. version_info.minor .. "." .. version_info.patch
                 local footer = "⚡ Neovim " .. nvim_version .. " loaded " .. stats.count .. " plugins in " .. ms .. "ms"
 
-                -- Fetch latest version asynchronously
+                -- Fetch latest version asynchronously via the releases/latest redirect
+                -- (avoids api.github.com rate limit and the jq dependency)
                 local latest_version = ""
                 local function fetch_latest_version()
                     local handle = io.popen(
-                    "curl -s https://api.github.com/repos/neovim/neovim/releases/latest | jq -r .tag_name")
+                    "curl -sLI -o /dev/null -w '%{url_effective}' https://github.com/neovim/neovim/releases/latest")
                     if handle then
-                        latest_version = handle:read("*a"):gsub("\n", "")
+                        local final_url = handle:read("*a"):gsub("%s+$", "")
                         handle:close()
-                        if latest_version and latest_version ~= "" and latest_version ~= nvim_version then
+                        latest_version = final_url:match("/tag/(.+)$") or ""
+                        if latest_version ~= "" and latest_version ~= nvim_version then
                             footer = "⚡ Neovim " .. nvim_version .. "  "
                             footer = footer .. "loaded " .. stats.count .. " plugins in " .. ms .. "ms"
                             dashboard.section.footer.val = footer
