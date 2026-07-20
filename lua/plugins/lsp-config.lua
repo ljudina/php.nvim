@@ -2,7 +2,7 @@ return {
     'neovim/nvim-lspconfig',
     dependencies = { 'saghen/blink.cmp' },
     config = function()
-        local servers = { 'lua_ls', 'intelephense', 'vtsls', 'gopls', 'sqlls' }
+        local servers = { 'lua_ls', 'intelephense', 'vtsls', 'gopls', 'sqls' }
 
         -- superhtml LSP for HTML files
         vim.api.nvim_create_autocmd("FileType", {
