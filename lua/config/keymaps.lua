@@ -27,6 +27,8 @@ map("n", "<M-q>", "<cmd>ccl<CR>")
 map("n", "<M-i>", '"_dd')
 map("v", "<M-i>", '"_d')
 
+map('n', '<leader>cd', ':e ++ff=dos<CR>', { silent = true, desc = 'Reload file with DOS line endings' })
+
 -- copy everything between { and } including the brackets
 -- p puts text after the cursor,
 -- P puts text before the cursor.
