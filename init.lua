@@ -15,6 +15,7 @@ require("general")
 require("config.keymaps")
 require("config.leaf")
 require("config.kickstart")
+require("config.invisible_chars").setup()
 require("lazy").setup("plugins", {
     change_detection = {
         notify = false,
